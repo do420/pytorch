@@ -408,7 +408,7 @@ class save_on_cpu(saved_tensors_hooks):
         if device_type is None:
             accelerator = torch.accelerator.current_accelerator()
             device_type = accelerator.type
-        device_module = getattr(torch, device_type, torch.cuda)
+        device_module = getattr(torch, device_type)
 
         def pack_to_cpu(tensor: torch.Tensor) -> tuple[torch.device, torch.Tensor]:
             if not pin_memory:
